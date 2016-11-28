@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         Animator animate = GetComponent<Animator>();
+        int velocity;
+        Vector2 beforePos;
         if (Input.GetMouseButtonDown(0))
         {
             Speed -= .05f;
@@ -25,6 +27,7 @@ public class PlayerMove : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.A))
         {
+            beforePos = transform.position;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, Distance, 1 << 8);
             GetComponent<Animator>().SetBool("WalkingLeft", true);
             if (hit.collider == null)
